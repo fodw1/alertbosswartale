@@ -1,6 +1,6 @@
 registerPlugin({
     name: 'Alert Boss Wartale',
-    version: '1.1',
+    version: '1.0',
     backends: ['ts3'],
     description: 'This plugin alerts all bosses that will be born 15 minutes earlier.',
     author: 'And4e - Wartale <andre3397@protonmail.com>',
@@ -19,7 +19,9 @@ registerPlugin({
         name: 'timetoalert',
         title: 'Select the time to alert before the boss born.', // tempo de alerta conforme o boss time a escolha
         type: 'select',
-        options: ['','5 minutes before','10 minutes before','15 minutes before']
+        options: ['5 minutes before',
+                 '10 minutes before',
+                 '15 minutes before']
       },
       {
           name:'messagetouser', //Message to user according with saved string
@@ -39,7 +41,7 @@ registerPlugin({
     var timetoalert = store.get('timetoalert'); // deacordo com a docs estou obtendo as strings
     
     event.on('clientMove', ({ client, fromChannel }) => {
-        let msg = message.replace('%t', Client.name())
+        let msg = message.replace('%t', client.name())
         if (!fromChannel) {
             if (ClientServerGroupEvent, id():groupstoadd) {
                 client.chat(msg)
