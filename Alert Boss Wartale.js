@@ -21,16 +21,27 @@ registerPlugin({
         type: 'select',
         options: ['','5 minutes before','10 minutes before','15 minutes before']
       },
+      {
+          name:'messagetouser', //Message to user according with saved string
+          title:'Esreva uma mensagem que sera enviada (%t = tempo do servidor agora) ',
+          type:'string',
+      }
 
 ],
     autorun: false
-}, function(sinusbot, config) {
+},
+    (_, { message, type }) => {
+    const event = require('event')
+    var event = require('ClientServerGroupEvent')
+    
     var groupstoadd = store.get('groupstoadd'); // deacordo com a docs estou obtendo as strings
     var bosstimeserver = store.get('bosstimeserver'); // deacordo com a docs estou obtendo as strings
     var timetoalert = store.get('timetoalert'); // deacordo com a docs estou obtendo as strings
     
-    event.on('message', msg => {
-    msg.createReaction('👍');
-    });
-
+    event.on('clientMove', ({ client, fromChannel }) => {
+        let msg = message.replace('%t', Client.name())
+        if (!fromChannel) {
+            if (ClientServerGroupEvent, id():groupstoadd) {
+                client.chat(msg)
+            }
 });
